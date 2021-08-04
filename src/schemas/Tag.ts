@@ -1,6 +1,8 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-type Tag = Document & {};
+type Tag = Document & {
+    title: string;
+};
 
 const TagSchema = new Schema(
     {
