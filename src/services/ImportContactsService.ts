@@ -22,15 +22,19 @@ class ImportContactsService {
 
         const newTagsData = tags
         .filter(tag => !existentTagsTitles.includes(tag))
-        .map(tag => ({title: tag,}));
+        .map(tag => ({ title: tag }));
 
         const createdTags = await Tag.create(newTagsData);
         const tagsIds = createdTags.map(tag => tag._id);
 
         parseCSV.on('data', async line => {
             const [email] = line;
-
-            await Contact.create({ email, tags: tagsIds });
+            
+            await Contact.findOneAndUpdate(
+                { email },
+                { $addToSet: {tags: tagsIds} },
+                { upsert: true },
+            )
         });
 
         await new Promise(resolve => parseCSV.on('end', resolve));
