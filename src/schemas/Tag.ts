@@ -5,8 +5,7 @@ type Tag = Document & {};
 const TagSchema = new Schema(
     {
         title: {
-            type: String,
-            lowercase: true,
+            type: String,            
             trim: true,
             unique: true,
             required: true,
