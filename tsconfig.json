@@ -16,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "paths": {
-      "@services/*": ["./services/*"]
+      "@services/*": ["./services/*"],
+      "@schemas/*": ["./schemas/*"]
     }
   },
   "include": ["src", "__tests__"]  
